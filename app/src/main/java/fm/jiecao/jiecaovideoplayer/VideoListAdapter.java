@@ -55,6 +55,7 @@ public class VideoListAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
+        System.out.println("SomethingWrongWithSetUp setUp");
         viewHolder.jcVideoPlayer.setUp(
                 videoUrls[videoIndexs[position]],
                 videoTitles[videoIndexs[position]]);
