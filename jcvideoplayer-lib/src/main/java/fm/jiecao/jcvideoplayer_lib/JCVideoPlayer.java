@@ -251,7 +251,6 @@ public abstract class JCVideoPlayer extends FrameLayout implements View.OnClickL
     surfaceView = new JCResizeSurfaceView(getContext());
     surfaceHolder = surfaceView.getHolder();
     surfaceHolder.addCallback(this);
-//        surfaceView.setOnClickListener(this);
     RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
     layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT);
     rlSurfaceContainer.addView(surfaceView, layoutParams);
@@ -431,8 +430,16 @@ public abstract class JCVideoPlayer extends FrameLayout implements View.OnClickL
   }
 
   private boolean FalseSetDisPlay = false;
+  boolean tmpFLag = true;
 
   private void setDisplayCaseFailse() {
+    if (tmpFLag && !IF_CURRENT_IS_FULLSCREEN) {
+      Log.i(TAG, "recreate surfaceview from tmpFLag");
+      tmpFLag = false;
+      FalseSetDisPlay = true;
+      addSurfaceView();
+      return;
+    }
     try {
       JCMediaManager.intance().mediaPlayer.setDisplay(surfaceHolder);
     } catch (IllegalArgumentException e) {
