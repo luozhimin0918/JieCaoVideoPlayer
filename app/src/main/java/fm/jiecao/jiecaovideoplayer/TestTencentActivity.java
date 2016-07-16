@@ -33,6 +33,12 @@ public class TestTencentActivity extends AppCompatActivity {
                 DJMediaManager.instance().setDisplay(dj2.getHolder().getSurface());
             }
         });
+        findViewById(R.id.xuwu).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DJMediaManager.instance().setDisplay(null);
+            }
+        });
 
     }
 }
